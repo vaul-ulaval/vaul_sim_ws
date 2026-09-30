@@ -24,7 +24,7 @@ COPY devkit-startup.bash /usr/local/bin/devkit-startup
 RUN chmod +x /usr/local/bin/devkit-startup \
     && printf '%s\n' \
        'source /opt/ros/humble/setup.bash' \
-       'if [ -f /home/ros_dev/install/local_setup.bash ]; then source /home/ros_dev/install/local_setup.bash; fi' \
+       'if [ -f "$PWD/install/local_setup.bash" ]; then source "$PWD/install/local_setup.bash"; fi' \
        > /etc/profile.d/ros-dev.sh \
     && cat /etc/profile.d/ros-dev.sh >> /etc/bash.bashrc
 

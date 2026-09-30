@@ -1,3 +1,0 @@
-services:
-  devkit:
-    command: sleep infinity

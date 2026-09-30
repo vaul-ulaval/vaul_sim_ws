@@ -2,26 +2,25 @@ name: vaul_sim_ws
 
 services:
   devkit:
-    container_name: ${USER:-vaul}-devkit
+    image: vaul_sim_ws-devkit
     build:
       context: .
       dockerfile: devkit.Dockerfile
       args:
-        USER_UID: ${UID:-1000}
-        USER_GID: ${GID:-1000}
+        USER_UID: ${USER_UID:-1000}
+        USER_GID: ${USER_GID:-1000}
     command: sleep infinity
     depends_on:
       - simulator
     networks:
       - simulation
     volumes:
-      - .:/home/ros_dev:cached
+      - .:/home/ros_dev/ws:cached,z
     environment:
       ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-0}
-      DISPLAY: ${DISPLAY:-}
+    userns_mode: ${USERNS_MODE:-}
 
   simulator:
-    container_name: ${USER:-vaul}-simulator
     image: ghcr.io/vaul-ulaval/f1tenth_gym_ros:latest
     entrypoint: ["/bin/bash", "-c"]
     command:
