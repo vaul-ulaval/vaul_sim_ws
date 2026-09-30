@@ -1,0 +1,36 @@
+name: vaul_sim_ws
+
+services:
+  devkit:
+    container_name: ${USER:-vaul}-devkit
+    build:
+      context: .
+      dockerfile: devkit.Dockerfile
+      args:
+        USER_UID: ${UID:-1000}
+        USER_GID: ${GID:-1000}
+    command: sleep infinity
+    depends_on:
+      - simulator
+    networks:
+      - simulation
+    volumes:
+      - .:/home/ros_dev:cached
+    environment:
+      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-0}
+      DISPLAY: ${DISPLAY:-}
+
+  simulator:
+    container_name: ${USER:-vaul}-simulator
+    image: ghcr.io/vaul-ulaval/f1tenth_gym_ros:latest
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      - "source /opt/ros/humble/setup.bash && source /sim_ws/install/local_setup.bash && exec ros2 launch f1tenth_gym_ros gym_bridge_launch.py"
+    ports:
+      - "${FOXGLOVE_PORT:-8765}:8765"
+    networks:
+      - simulation
+
+networks:
+  simulation:
+    driver: bridge

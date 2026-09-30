@@ -1,0 +1,20 @@
+{
+  "python.autoComplete.extraPaths": [
+    "/home/ros_dev/build/reactive_control",
+    "/home/ros_dev/install/reactive_control/lib/python3.10/site-packages",
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages"
+  ],
+  "python.analysis.extraPaths": [
+    "/home/ros_dev/build/reactive_control",
+    "/home/ros_dev/install/reactive_control/lib/python3.10/site-packages",
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages"
+  ],
+  "clangd.arguments": [
+    "--compile-commands-dir=${workspaceFolder}/build",
+    "--query-driver=/usr/bin/g++",
+    "--log=verbose"
+  ],
+  "ros.distro": "humble"
+}

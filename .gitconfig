@@ -1,0 +1,18 @@
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[user]
+	name = Jayson Poirier
+	email = japoi74@ulaval.ca
+[core]
+	autocrlf = true
+[difftool "sourcetree"]
+	cmd = "'' "
+[mergetool "sourcetree"]
+	cmd = "'' "
+	trustExitCode = false
+	keepBackup = false
+[credential]
+	helper = "!f() { /home/ros_dev/.vscode-server/bin/2242ebbb54efeeb0129e08e919e7e8d43033cd83/node /tmp/vscode-remote-containers-b3afda54-b13f-415f-b673-2a4af33e308a.js git-credential-helper $*; }; f"

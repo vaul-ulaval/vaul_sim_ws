@@ -1,0 +1,9 @@
+**/__pycache__
+**/build
+**/install
+**/log
+.cache
+.copilot
+.dotnet
+.ros
+.vscode-server
