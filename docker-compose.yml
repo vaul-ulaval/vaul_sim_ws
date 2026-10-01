@@ -1,4 +1,4 @@
-name: vaul_sim_ws
+name: vaul_sim_ws_${USER:-default}
 
 services:
   devkit:
@@ -18,6 +18,7 @@ services:
       - ../../dev_ws:/home/ros_dev/ws:cached,z
     environment:
       ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-0}
+      FOXGLOVE_PORT: ${FOXGLOVE_PORT:-8765}
     userns_mode: ${USERNS_MODE:-}
 
   simulator:
@@ -27,6 +28,7 @@ services:
       - "source /opt/ros/humble/setup.bash && source /sim_ws/install/local_setup.bash && exec ros2 launch f1tenth_gym_ros gym_bridge_launch.py"
     environment:
       ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-0}
+      FOXGLOVE_PORT: ${FOXGLOVE_PORT:-8765}
     ports:
       - "${FOXGLOVE_PORT:-8765}:8765"
     networks:
